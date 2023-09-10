@@ -1,59 +1,104 @@
-import org.example.Book;
-import org.example.Library;
+import org.example.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+
 public class LibraryTest {
     private Library library;
+    private Patron patron1;
+    private Patron patron2;
+    private Book book1;
+    private Book book2;
+    private DVD dvd1;
+    private DVD dvd2;
 
     @Before
     public void setUp() {
         library = new Library();
+        patron1 = new Patron("Patron1");
+        patron2 = new Patron("Patron2");
+        book1 = new Book("Name1", "Author1");
+        book2 = new Book("Name2", "Author2");
+        dvd1 = new DVD("Name1", 1);
+        dvd2 = new DVD("Name2", 2);
     }
 
     @Test
-    public void testAddToLibrary() {
-        assertTrue(library.addToLibrary("Book1", "Author1", 1234567890L, (short) 2020));
-        assertFalse(library.addToLibrary("Book2", "Author2", 1234567890L, (short) 2021));
+    public void testRegisterPatron() {
+        assertTrue(library.registerPatron(patron1));
+        assertFalse(library.registerPatron(patron1));
     }
 
     @Test
-    public void testFindBookByName() {
-        String name1 = "Book1";
-        String name2 = "Book2";
+    public void testLendItem() {
+        assertTrue(library.add(book1));
+        assertTrue(library.registerPatron(patron1));
 
-        library.addToLibrary(name1, "Author1", 1234567890L, (short) 2020);
-        library.addToLibrary(name2, "Author2", 1234567891L, (short) 2021);
-
-        Book foundBook1 = library.findBookByName(name1);
-        assertNotNull(foundBook1);
-        assertEquals("Book1", foundBook1.getName());
-
-        Book foundBook2 = library.findBookByName(name2);
-        assertNotNull(foundBook2);
-        assertEquals("Book2", foundBook2.getName());
-
-        Book notFoundBook = library.findBookByName("Book3");
-        assertNull(notFoundBook);
+        assertTrue(library.lendItem(patron1, book1));
+        assertFalse(library.lendItem(patron1, book1));
     }
 
     @Test
-    public void testDeleteBookByISBN() {
-        long isbn = 1234567890L;
-        library.addToLibrary("Book1", "Author1", isbn, (short) 2020);
+    public void testReturnItem() {
+        assertTrue(library.add(dvd1));
+        assertTrue(library.registerPatron(patron1));
 
-        Book deletedBook = library.deleteBookByISBN(isbn);
-        assertNotNull(deletedBook);
-        assertEquals("Book1", deletedBook.getName());
+        assertTrue(library.lendItem(patron1, dvd1));
+        assertNotNull(library.returnItem(patron1, dvd1));
+        assertNull(library.returnItem(patron1, dvd1));
+        assertNull(library.returnItem(patron1, dvd2));
+    }
 
-        Book notFoundBook = library.findBookByName("Book1");
-        assertNull(notFoundBook);
+    @Test
+    public void testAdd() {
+        assertTrue(library.add(book1));
+        assertFalse(library.add(book1)); // Try adding the same item again
+    }
 
-        Book nonExistentBook = library.deleteBookByISBN(1111111111L);
-        assertNull(nonExistentBook);
+    @Test
+    public void testRemove() {
+        assertTrue(library.add(dvd1));
+        assertNotNull(library.remove(dvd1));
+        assertNull(library.remove(dvd1)); // Try removing the same item again
+    }
+
+    @Test
+    public void testListBorrowed() {
+        assertTrue(library.add(book1));
+        assertTrue(library.add(book2));
+        assertTrue(library.registerPatron(patron1));
+        assertTrue(library.registerPatron(patron2));
+
+        assertTrue(library.lendItem(patron1, book1));
+        assertTrue(library.lendItem(patron2, book2));
+
+        assertEquals(2, library.listBorrowed().size());
+
+        library.returnItem(patron1, book1);
+        library.returnItem(patron2, book2);
+
+        assertNull(library.listBorrowed());
+    }
+
+    @Test
+    public void testListAvailable() {
+        assertTrue(library.add(dvd1));
+        assertTrue(library.add(dvd2));
+
+        assertEquals(2, library.listAvailable().size());
+
+        assertTrue(library.registerPatron(patron1));
+
+        assertTrue(library.lendItem(patron1, dvd1));
+
+        assertEquals(1, library.listAvailable().size());
+
+        library.returnItem(patron1, dvd1);
+
+        assertEquals(2, library.listAvailable().size());
     }
 }
 
