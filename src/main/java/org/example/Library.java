@@ -1,65 +1,91 @@
 package org.example;
 
+import org.example.Interfaces.IManageble;
+
 import java.util.ArrayList;
 
-public class Library {
-    private ArrayList<Book> books = new ArrayList<>();
+public class Library implements IManageble {
+    private final ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<Patron> patrons = new ArrayList<>();
 
-    public boolean addToLibrary(String name, String author, long ISBN, short year) {
-        if (findIndexByISBN(ISBN) == -1) {
-            return books.add(new Book(name, author, ISBN, year));
+    public boolean registerPatron(Patron p) {
+        if(!patrons.contains(p)) {
+            patrons.add(p);
+            return true;
         }
-        else {
-            printer("Book with ISBN: " + ISBN + " already exist");
-            return false;
-        }
+        printer("This patron already exist!");
+        return false;
     }
 
-    public void printAllBooks() {
-        System.out.println("-------------------------------------------------------------------------");
-        System.out.println("Book name\t\t\t\tAuthor name\t\t\tISBN\t\t\t\tYear");
-        for (Book b: books) {
-            System.out.println(b.toString());
+    public boolean lendItem(Patron p, Item i) {
+        if (!i.isBorrowed() && items.contains(i)) {
+            i.borrowItem();
+            p.borrowItem(i);
+            return true;
         }
-        System.out.println("-------------------------------------------------------------------------");
+        printer("Item already borrowed or doesn't register in library!");
+        return false;
     }
 
-    public Book findBookByName(String name) {
-        for (Book b : books) {
-            if(b.getName().equals(name)) {
-                System.out.println("-------------------------------------------------------------------------");
-                System.out.println("Book name\t\t\t\tAuthor name\t\t\tISBN\t\t\t\tYear");
-                System.out.println(b);
-                System.out.println("-------------------------------------------------------------------------");
-                return b;
+    public Item returnItem(Patron p, Item i) {
+        if(i.isBorrowed() && p.getBorrowedItems().contains(i) && items.contains(i)) {
+            i.returnItem();
+            p.returnItem(i);
+            return i;
+        }
+        printer("Item already returned or patron has no item!");
+        return null;
+    }
+    @Override
+    public boolean add(Item i) {
+        for (Item item : items) {
+            if(item.getUniqueID().equals(i.getUniqueID())){
+                printer("Item already exist!");
+                return false;
             }
         }
+        printer("Item successfully added!");
+        return items.add(i);
+    }
 
-        printer("There is no book with this name: \"" + name + "\"");
+    @Override
+    public Item remove(Item item) {
+        for (int i = 0; i < items.size(); i++) {
+            if(item.getUniqueID().equals(items.get(i).getUniqueID())){
+                printer("Item successfully removed!");
+                return items.remove(i);
+            }
+        }
+        printer("Item does not exist!");
         return null;
     }
 
-    public Book deleteBookByISBN(long ISBN) {
-        if (findIndexByISBN(ISBN) == -1) {
-            printer("There is no book with this ISBN: " + ISBN);
-            return null;
+    @Override
+    public ArrayList<Item> listBorrowed() {
+        ArrayList<Item> listBorrowed = new ArrayList<>();
+        for (Item i : items) {
+            if(i.isBorrowed()) listBorrowed.add(i);
         }
-        else {
-            printer("Book with ISBN: " + ISBN + " successfully removed");
-            return books.remove(findIndexByISBN(ISBN));
+        if(listBorrowed.size() != 0) {
+            printer("List of borrowed items:\n" + listBorrowed);
+            return listBorrowed;
         }
+        printer("There is no borrowed items!");
+        return null;
     }
 
-    private int findIndexByISBN(long ISBN) {
-        int index = -1;
-
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getNumber() == ISBN) {
-                index = i;
-                break;
-            }
+    @Override
+    public ArrayList<Item> listAvailable() {
+        ArrayList<Item> listAvailable = new ArrayList<>();
+        for (Item i : items) {
+            if(!i.isBorrowed()) listAvailable.add(i);
         }
-        return index;
+        if(listAvailable.size() != 0) {
+            printer("List of available items:\n" + listAvailable);
+            return listAvailable;
+        }
+        printer("There is no available items!");
+        return null;
     }
 
     private void printer(String message) {

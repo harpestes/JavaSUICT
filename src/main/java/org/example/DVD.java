@@ -2,15 +2,16 @@ package org.example;
 
 import java.util.Random;
 
-public class Book extends Item {
-    private final String author;
-    public Book(String title, String author) {
+public class DVD extends Item{
+
+    private final int duration;
+    public DVD(String title, int duration) {
         super(title);
-        this.author = author;
+        this.duration = duration;
     }
 
-    public String getAuthor() {
-        return author;
+    public int getDuration() {
+        return duration;
     }
 
     @Override
@@ -34,6 +35,6 @@ public class Book extends Item {
 
     @Override
     public String toString() {
-        return "Book title: " + super.getTitle() + ", Author: " + author + "; ";
+        return "DVD title: " + super.getTitle() + ", Duration: " + duration + "min; ";
     }
 }

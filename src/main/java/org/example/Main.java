@@ -3,23 +3,32 @@ package org.example;
 public class Main {
     public static void main(String[] args) {
         Library library = new Library();
+        Book book1 = new Book("Animal Farm", "George Orwell");
+        Book book2 = new Book("A Game of Thrones", "George Martin");
+        DVD dvd1 = new DVD("Evil Beavers", 20);
+        library.add(book1);
+        library.add(book2);
+        library.add(dvd1);
+        library.add(dvd1);
 
-        library.addToLibrary("Animal Farm", "George Orwell", 9786558178804L, (short)1945);
-        library.addToLibrary("The Lord Of Flies", "William Golding", 9781573226127L, (short)1954);
-        library.addToLibrary("A Game of Thrones", "George Martin", 9780007237500L, (short)1996);
-        library.addToLibrary("A Clash of Kings", "George Martin", 9781984821157L, (short)1998);
-        library.addToLibrary("Sezon burz", "Andrzej Sapkowski", 9788842932796L, (short)2013);
-        library.addToLibrary("A Feast for Crows", "George Martin", 9783442268603L, (short)2005);
-        library.addToLibrary("Pani Jeziora", "Andrzej Sapkowski", 9780316273831L, (short)1999);
+        Patron patron1 = new Patron("Bobr");
+        Patron patron2 = new Patron("Bebr");
+        library.registerPatron(patron1);
+        library.registerPatron(patron2);
+        library.registerPatron(patron1);
 
-        library.addToLibrary("A Clash of Kings", "George R. R. Martin", 9781984821157L, (short)1998);
+        library.lendItem(patron1, book1);
+        library.lendItem(patron2, book1);
 
-        library.printAllBooks();
+        library.listAvailable();
+        library.listBorrowed();
+        library.listAvailable();
 
-        library.findBookByName("A Clash of Kings");
-        library.findBookByName("The Clash of King");
+        library.returnItem(patron1, book1);
+        library.returnItem(patron2, book1);
 
-        library.deleteBookByISBN(9783442268603L);
-        library.deleteBookByISBN(1111111111111L);
+        library.remove(book1);
+
+        library.listAvailable();
     }
 }
