@@ -22,7 +22,7 @@ public class DVD extends Item{
                 .limit(16)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
-        if(library.getItems().stream().map(x -> !x.getUniqueID().equals(result)).findAny().isPresent())
+        if(library.getItems().stream().map(x -> x.getUniqueID().equals(result)).findAny().isPresent())
             return idGenerator();
         return result;
     }
