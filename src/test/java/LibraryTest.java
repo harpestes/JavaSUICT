@@ -29,7 +29,7 @@ public class LibraryTest {
     @Test
     public void testRegisterPatron() {
         assertTrue(library.registerPatron(patron1));
-        assertFalse(library.registerPatron(patron1));
+        assertFalse(library.registerPatron(patron1)); // Try to register the same patron
     }
 
     @Test
@@ -38,7 +38,7 @@ public class LibraryTest {
         assertTrue(library.registerPatron(patron1));
 
         assertTrue(library.lendItem(patron1, book1));
-        assertFalse(library.lendItem(patron1, book1));
+        assertFalse(library.lendItem(patron1, book1)); // Try lending the same item again
     }
 
     @Test
@@ -48,8 +48,8 @@ public class LibraryTest {
 
         assertTrue(library.lendItem(patron1, dvd1));
         assertNotNull(library.returnItem(patron1, dvd1));
-        assertNull(library.returnItem(patron1, dvd1));
-        assertNull(library.returnItem(patron1, dvd2));
+        assertNull(library.returnItem(patron1, dvd1)); // Try returning the same item again
+        assertNull(library.returnItem(patron1, dvd2)); // Try returning the wrong item
     }
 
     @Test
