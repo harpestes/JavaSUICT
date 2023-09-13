@@ -11,11 +11,7 @@ public class Patron {
     public Patron(String name) {
         this.name = name;
         borrowedItems = new ArrayList<>();
-        Random rnd = new Random();
-        ID = rnd.ints(48, 123)
-                .limit(16)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
+        ID = idGenerator();
     }
 
     public String getName() {
@@ -48,5 +44,17 @@ public class Patron {
 
     public void returnItem(Item i) {
         borrowedItems.remove(i);
+    }
+
+    private String idGenerator() {
+        Random rnd = new Random();
+        Library library = new Library();
+        String result = rnd.ints(48, 123)
+                .limit(16)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        if(library.getItems().stream().map(x -> x.getUniqueID().equals(result)).findAny().isPresent())
+            return idGenerator();
+        return result;
     }
 }
