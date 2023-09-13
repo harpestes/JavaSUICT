@@ -16,10 +16,14 @@ public class Book extends Item {
     @Override
     public String idGenerator() {
         Random rnd = new Random();
-        return rnd.ints(48, 123)
+        Library library = new Library();
+        String result = rnd.ints(48, 123)
                 .limit(16)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
+        if(library.getItems().stream().map(x -> !x.getUniqueID().equals(result)).findAny().isPresent())
+            return idGenerator();
+        return result;
     }
 
     @Override

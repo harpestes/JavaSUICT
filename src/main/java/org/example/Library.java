@@ -8,6 +8,10 @@ public class Library implements IManageble {
     private final ArrayList<Item> items = new ArrayList<>();
     private final ArrayList<Patron> patrons = new ArrayList<>();
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     public boolean registerPatron(Patron p) {
         if(!patrons.contains(p)) {
             patrons.add(p);
