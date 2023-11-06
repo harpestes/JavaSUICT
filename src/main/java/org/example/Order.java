@@ -1,11 +1,11 @@
 package org.example;
 
-import lombok.Getter;
+import lombok.Data;
 
 import java.util.List;
 import java.util.Random;
 
-@Getter
+@Data
 public class Order {
     private final String orderId = idGenerator();
     private final List<Product> products;
@@ -22,13 +22,6 @@ public class Order {
         IN_PROGRESS
     }
 
-    public void cancelOrder() {
-        status = Status.CANCELED;
-    }
-
-    public void completeOrder() {
-        status = Status.COMPLETED;
-    }
     private String idGenerator() {
         return new Random().ints(48, 123)
                 .limit(16)

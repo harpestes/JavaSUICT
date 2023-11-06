@@ -15,12 +15,11 @@
 ## Опис роботи
 
 - Написав сутності [Product], [Cart] та [Order], в класі [Order] додав публічний `enum Status`
-- Написав функціонал програми
-    - [Cart]
+- Написав функціонал програми в створеному класі [ECommerceService]
+    - [ECommerceService]
       - метод `addToCart()` для додавання замовлення в кошик
       - метод `removeCart()` для видалення замовлення з кошика
       - метод `placeOrder()` для розміщення замовлення([Order]) з обраними товарами([Product])
-    - [Order]
       - `cancelOrder()` для відміни замовлення
       - `cancelOrder()` для виконання замовлення 
     - Також в класах [Product] і [Order] додав метод `idGenerator()` для генерування `id` і `orderId` відповідно
@@ -30,7 +29,8 @@
 
 **Під час виконання лабораторної роботи покращив вміння написання тестів Java, зокрема за допомогою Mockito**
 
-[тести]: ../test/java/CartTest.java
-[Product]: ./java/org/example/Product.java
-[Cart]: ./java/org/example/Cart.java
-[Order]: ./java/org/example/Order.java
+[тести]: src/test/java/ECommerceServiceTest.java
+[Product]: src/main/java/org/example/Product.java
+[Cart]: src/main/java/org/example/Cart.java
+[Order]: src/main/java/org/example/Order.java
+[ECommerceService]: src/main/java/org/example/ECommerceService.java
