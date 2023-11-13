@@ -5,5 +5,8 @@ public class Main {
         Cinema cinema = new Cinema(5, 10, 20);
         cinema.bookSeats(0, 3, new int[]{5, 6, 7, 8});
         cinema.printSeatingArrangement(0);
+        System.out.println("-------------------------------------------------------------------------------------------");
+        cinema.autoBook(1, 9);
+        cinema.printSeatingArrangement(1);
     }
 }

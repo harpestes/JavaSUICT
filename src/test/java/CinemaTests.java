@@ -48,8 +48,10 @@ public class CinemaTests {
 
     @Test
     public void testFindBestAvailable_True() {
-        assertArrayEquals(new int[]{0, 5}, cinema.findBestAvailable(0, 1));
-        assertArrayEquals(new int[]{0, 4, 5}, cinema.findBestAvailable(0, 2));
+        assertArrayEquals(new int[]{5}, cinema.findBestAvailable(0, 1).getSeats());
+        assertEquals(0, cinema.findBestAvailable(0, 1).getRow());
+        assertArrayEquals(new int[]{4, 5}, cinema.findBestAvailable(0, 2).getSeats());
+        assertEquals(0, cinema.findBestAvailable(0, 2).getRow());
     }
 
     @Test

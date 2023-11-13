@@ -89,9 +89,10 @@ public class Cinema {
         for(int i = 0; i < cinema[hallNumber][0].length; i++) {
             System.out.print(i+1 + "\t");
         }
+        System.out.println();
     }
 
-    public int[] findBestAvailable(int hallNumber, int numSeats) {
+    public Seats findBestAvailable(int hallNumber, int numSeats) {
         if(hallNumber >= cinema.length || numSeats > cinema[hallNumber][0].length) {
             throw new IllegalArgumentException("You entered wrong values!");
         }
@@ -132,13 +133,11 @@ public class Cinema {
         }
 
         if(resultRow > -1) {
-            int[] result = new int [numSeats + 1];
-
-            result[0] = resultRow;
+            int[] seats = new int[numSeats];
             for(int i = 0; i < numSeats; i++) {
-                result[i + 1] = resultFirstSeat + i;
+                seats[i] = resultFirstSeat + i;
             }
-            return result;
+            return new Seats(resultRow, seats);
         }
 
         System.out.println("There is no available seats in the hall!");
@@ -146,9 +145,9 @@ public class Cinema {
     }
 
     public boolean autoBook(int hallNumber, int numSeats) {
-        int[] bestSeats = findBestAvailable(hallNumber, numSeats);
+        Seats bestSeats = findBestAvailable(hallNumber, numSeats);
         int[] seats = new int[numSeats];
-        if (bestSeats.length - 1 >= 0) System.arraycopy(bestSeats, 1, seats, 0, bestSeats.length - 1);
-        return bookSeats(hallNumber, bestSeats[0], seats);
+        if (bestSeats.getSeats().length > 0) System.arraycopy(bestSeats.getSeats(), 0, seats, 0, bestSeats.getSeats().length);
+        return bookSeats(hallNumber, bestSeats.getRow(), seats);
     }
 }
