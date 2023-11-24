@@ -42,7 +42,7 @@
 - Створив класи [Product], [User], [Order] та релізував їх поля і методи додатково додав поле `historyOfOrders` та відповідну йому реалізацію.
 - Створив клас [ECommercePlatform] та реалізував його поля та методи.
 - Створив клас [ECommerceDemo] в якому продемонстрував функціональність програми, а також за допомогою створених раніше класів [NameComparator] та [StockComparator] вивів відсортовані продукти.
-- Написав
+- Написав [тести]
 
 ## Висновок
 
@@ -54,3 +54,4 @@
 [ECommercePlatform]: ./src/main/java/org/example/ECommercePlatform.java
 [NameComparator]: ./src/main/java/org/example/NameComparator.java
 [StockComparator]: ./src/main/java/org/example/StockComparator.java
+[тести]: ./src/test/java/ECommercePlatformTest.java

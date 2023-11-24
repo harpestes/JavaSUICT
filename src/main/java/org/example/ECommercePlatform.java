@@ -60,8 +60,8 @@ public class ECommercePlatform {
         product.setStock(newStock);
     }
 
-    public Order placeOrder(Integer userId) {
-        User user = users.get(userId);
+    public Order placeOrder(Integer userId) throws NoSuchObjectException {
+        User user = getUserById(userId);
         Order order = new Order(orders.size() + 1, user.getId(), user.getCart());
 
         user.clearCart();
@@ -81,8 +81,8 @@ public class ECommercePlatform {
         return orders.put(order.getId(), order);
     }
 
-    public List<Product> makeRecommendations(Integer userId) {
-        User user = users.get(userId);
+    public List<Product> makeRecommendations(Integer userId) throws NoSuchObjectException {
+        User user = getUserById(userId);
 
         ArrayList<Map.Entry<Product, Integer>> toSort = new ArrayList<>(user.getHistoryOfOrders().entrySet());
         toSort.sort(Map.Entry.<Product, Integer>comparingByValue().reversed());
