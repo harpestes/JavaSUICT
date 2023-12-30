@@ -1,4 +1,4 @@
-package org.example;
+package org.example.lab8.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class WeatherForTheYear {
     private double averageYearPrecipitation;
     private double averageYearHumidity;
 
-    public WeatherForTheYear() {
+    public void countAverage() {
         OptionalDouble average = Arrays.stream(weather.getAverageTemperatureByDay()).average();
         if(average.isPresent()) averageYearTemperature = average.getAsDouble();
 

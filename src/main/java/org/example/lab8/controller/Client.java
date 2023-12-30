@@ -1,7 +1,10 @@
-package org.example;
+package org.example.lab8.controller;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.lab8.model.City;
+import org.example.lab8.model.CoordinateSearchResult;
+import org.example.lab8.model.WeatherForTheYear;
 
 import java.io.IOException;
 import java.net.URI;
@@ -42,7 +45,7 @@ public class Client {
         try {
             LocalDate currentDate = LocalDate.now();
 
-            HttpRequest request = HttpRequest.newBuilder().uri(new URI(url +
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI("https://archive-api.open-meteo.com/v1/" +
                     String.format("archive?latitude=%s&longitude=%s&start_date=%s&end_date=%s&daily=temperature_2m_mean,precipitation_sum,wind_speed_10m_max,et0_fao_evapotranspiration",
                             city.getLatitude(),
                             city.getLongitude(),
@@ -53,6 +56,7 @@ public class Client {
 
             WeatherForTheYear result = mapper.readValue(response.body(), WeatherForTheYear.class);
             result.setCity(city);
+            result.countAverage();
 
             return result;
         } catch (URISyntaxException | IOException | InterruptedException e) {
