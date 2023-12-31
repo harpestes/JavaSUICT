@@ -8,6 +8,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class WeatherForTheMonth {
+    private int monthNumber;
     private Date[] days;
     private double averageTemperature;
     private double averagePrecipitation;

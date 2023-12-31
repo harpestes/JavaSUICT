@@ -20,7 +20,6 @@ import java.util.List;
 public class Client {
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    private static final String url = "https://geocoding-api.open-meteo.com/v1/";
 
     public static List<City> getCityCoordinates(String... cityNames) {
         List<City> result = new ArrayList<>();
@@ -28,7 +27,8 @@ public class Client {
         Arrays.stream(cityNames).forEach(name -> {
             try {
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(new URI(url + String.format("search?name=%s&count=1&language=en&format=json", name))).build();
+                        .uri(new URI("https://geocoding-api.open-meteo.com/v1/" +
+                                String.format("search?name=%s&count=1&language=en&format=json", name))).build();
 
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 

@@ -6,13 +6,12 @@ import org.example.lab8.model.WeatherForTheMonth;
 import org.example.lab8.model.WeatherForTheYear;
 import org.example.lab8.service.WeatherAnalyzer;
 import org.example.lab8.service.WeatherStatistic;
-import org.example.lab8.tableConstructor.Row;
-import org.example.lab8.tableConstructor.Table;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static org.example.lab8.utils.TableConstructor.printWeatherForTheYearList;
+import static org.example.lab8.utils.TableConstructor.printWeatherForTheMonthList;
 
 public class WeatherAPIDemo {
     public static void main(String[] args) {
@@ -42,40 +41,20 @@ public class WeatherAPIDemo {
         List<WeatherForTheMonth> statistic = WeatherStatistic.calculateMonthlyAverages(Client.getWeatherForYear(cityCoordinates.get(0)).getWeather());
         WeatherForTheMonth windSpeed = WeatherStatistic.getMonthWithHighestAvgWindSpeed(Client.getWeatherForYear(cityCoordinates.get(0)).getWeather());
 
-        printData(hottest, WeatherForTheYear.class);
-        printData(coldest, WeatherForTheYear.class);
-        printData(humidity, WeatherForTheYear.class);
-        printData(precipitations, WeatherForTheYear.class);
-        printData(increased, WeatherForTheYear.class);
-        printData(statistic, WeatherForTheMonth.class);
-        printData(List.of(windSpeed), WeatherForTheMonth.class);
-    }
+        System.out.println("Найгарячіші міста");
+        printWeatherForTheYearList(hottest);
+        System.out.println("Найхолодніші міста");
+        printWeatherForTheYearList(coldest);
+        System.out.println("Міста з найвищою вологістю");
+        printWeatherForTheYearList(humidity);
+        System.out.println("Міста де було більше 7 послідовних днів опадів");
+        printWeatherForTheYearList(precipitations);
+        System.out.println("Міста в яких температура зросла на щонайменше 5°C протягом 5 послідовних днів");
+        printWeatherForTheYearList(increased);
 
-    private static <T> void printData(List<T> list, Class<T> type) {
-        Field[] fields = type.getDeclaredFields();
-
-        Table table = new Table();
-        Row header = table.createRow();
-        Arrays.stream(fields).forEach(field -> header.createCell(field.getName()));
-
-        list.forEach(data -> {
-            Row row = table.createRow();
-            Arrays.stream(fields).forEach(field -> {
-                try {
-                    field.setAccessible(true);
-                    Object value = field.get(data);
-                    field.setAccessible(false);
-                    if (field.getType() == String.class) {
-                        row.createCell((String) value);
-                    } else if (field.getType() == double.class) {
-                        row.createCell((double) value);
-                    }
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        });
-
-        table.print();
+        System.out.println("Глобальна статистика по місяцях"); //1 - January, 2 - February ...
+        printWeatherForTheMonthList(statistic);
+        System.out.println("Місяць з найвищою середньою швидкістю вітру");
+        printWeatherForTheMonthList(List.of(windSpeed));
     }
 }

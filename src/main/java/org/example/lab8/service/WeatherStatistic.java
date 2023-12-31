@@ -23,6 +23,7 @@ public class WeatherStatistic {
 
             WeatherForTheMonth monthData = monthlyDataMap.getOrDefault(month, new WeatherForTheMonth());
 
+            monthData.setMonthNumber(month);
             monthData.setDays(addToNonNullArray(monthData.getDays(), dates[i]));
 
             if(monthData.getDays().length == 1) {
@@ -48,33 +49,7 @@ public class WeatherStatistic {
     }
 
     public static WeatherForTheMonth getMonthWithHighestAvgWindSpeed(YearWeather yearWeather) {
-        Date[] dates = yearWeather.getDates();
-        double[] windSpeedByDay = yearWeather.getMaxWindSpeed();
-
-        Map<Integer, WeatherForTheMonth> monthlyDataMap = new HashMap<>();
-
-        for (int i = 0; i < dates.length; i++) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(dates[i]);
-
-            int month = calendar.get(Calendar.MONTH);
-
-            WeatherForTheMonth monthData = monthlyDataMap.getOrDefault(month, new WeatherForTheMonth());
-
-            monthData.setDays(addToNonNullArray(monthData.getDays(), dates[i]));
-
-            if(monthData.getDays().length == 1) {
-                monthData.setAverageWindSpeed(windSpeedByDay[i]);
-            }
-            else {
-                monthData.setAverageWindSpeed(calculateAverage(monthData.getAverageWindSpeed(), windSpeedByDay[i]));
-            }
-
-            monthlyDataMap.put(month, monthData);
-        }
-
-        List<WeatherForTheMonth> weatherForTheMonths = new ArrayList<>(12);
-        monthlyDataMap.forEach((key, value) -> weatherForTheMonths.add(value));
+        List<WeatherForTheMonth> weatherForTheMonths = calculateMonthlyAverages(yearWeather);
 
         WeatherForTheMonth result = weatherForTheMonths.get(0);
         for(int i = 1; i < weatherForTheMonths.size(); i++) {
