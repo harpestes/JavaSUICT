@@ -33,7 +33,7 @@
 
 **Під час виконання лабораторної роботи я покращив навички маніпулювання рядками Java, навчився використовувати `StringBuilder` та регулярні вирази.**
 
-[Decoder]: Decoder.java
-[main]: Main.java
-[Main]: Main.java
-[тести]: ../../../../test/java/DecoderTest.java
+[Decoder]: src/main/java/org/example/Decoder.java
+[main]: src/main/java/org/example/Main.java
+[Main]: src/main/java/org/example/Main.java
+[тести]: src/test/java/DecoderTest.java
