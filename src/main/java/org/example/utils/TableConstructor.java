@@ -1,8 +1,8 @@
-package org.example.lab8.utils;
+package org.example.utils;
 
 
-import org.example.lab8.model.WeatherForTheMonth;
-import org.example.lab8.model.WeatherForTheYear;
+import org.example.model.WeatherForTheMonth;
+import org.example.model.WeatherForTheYear;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package org.example.lab8.service;
+package org.example.service;
 
-import org.example.lab8.model.WeatherForTheMonth;
-import org.example.lab8.model.YearWeather;
+import org.example.model.WeatherForTheMonth;
+import org.example.model.YearWeather;
 
 import java.util.*;
 

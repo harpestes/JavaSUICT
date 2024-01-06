@@ -1,6 +1,6 @@
-package org.example.lab8.service;
+package org.example.service;
 
-import org.example.lab8.model.WeatherForTheYear;
+import org.example.model.WeatherForTheYear;
 
 import java.util.ArrayList;
 import java.util.Comparator;

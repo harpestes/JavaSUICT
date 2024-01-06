@@ -1,17 +1,17 @@
-package org.example.lab8;
+package org.example;
 
-import org.example.lab8.controller.Client;
-import org.example.lab8.model.City;
-import org.example.lab8.model.WeatherForTheMonth;
-import org.example.lab8.model.WeatherForTheYear;
-import org.example.lab8.service.WeatherAnalyzer;
-import org.example.lab8.service.WeatherStatistic;
+import org.example.controller.Client;
+import org.example.model.City;
+import org.example.model.WeatherForTheMonth;
+import org.example.model.WeatherForTheYear;
+import org.example.service.WeatherAnalyzer;
+import org.example.service.WeatherStatistic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.lab8.utils.TableConstructor.printWeatherForTheYearList;
-import static org.example.lab8.utils.TableConstructor.printWeatherForTheMonthList;
+import static org.example.utils.TableConstructor.printWeatherForTheYearList;
+import static org.example.utils.TableConstructor.printWeatherForTheMonthList;
 
 public class WeatherAPIDemo {
     public static void main(String[] args) {

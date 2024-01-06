@@ -1,10 +1,10 @@
-package org.example.lab8.controller;
+package org.example.controller;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.lab8.model.City;
-import org.example.lab8.model.CoordinateSearchResult;
-import org.example.lab8.model.WeatherForTheYear;
+import org.example.model.City;
+import org.example.model.CoordinateSearchResult;
+import org.example.model.WeatherForTheYear;
 
 import java.io.IOException;
 import java.net.URI;

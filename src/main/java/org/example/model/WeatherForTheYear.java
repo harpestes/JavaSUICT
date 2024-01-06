@@ -1,4 +1,4 @@
-package org.example.lab8.model;
+package org.example.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
