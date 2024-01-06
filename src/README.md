@@ -28,13 +28,13 @@
 
 **Під час лабораторної роботи я навчився робити http запити, обробляти json відповідь та виводити дані в консольній таблицю**
 
-[City]: model/City.java
-[CoordinateSearchResult]: model/CoordinateSearchResult.java
-[WeatherForTheYear]: model/WeatherForTheYear.java
-[YearWeather]: model/YearWeather.java
-[Client]: controller/Client.java
-[WeatherAnalyzer]: service/WeatherAnalyzer.java
-[WeatherForTheMonth]: model/WeatherForTheMonth.java
-[WeatherStatistic]: service/WeatherStatistic.java
-[TableConstructor]: utils/TableConstructor.java
-[WeatherAPIDemo]: WeatherAPIDemo.java
+[City]: main/java/org/example/model/City.java
+[CoordinateSearchResult]: main/java/org/example/model/CoordinateSearchResult.java
+[WeatherForTheYear]: main/java/org/example/model/WeatherForTheYear.java
+[YearWeather]: main/java/org/example/model/YearWeather.java
+[Client]: main/java/org/example/controller/Client.java
+[WeatherAnalyzer]: main/java/org/example/service/WeatherAnalyzer.java
+[WeatherForTheMonth]: main/java/org/example/model/WeatherForTheMonth.java
+[WeatherStatistic]: main/java/org/example/service/WeatherStatistic.java
+[TableConstructor]: main/java/org/example/utils/TableConstructor.java
+[WeatherAPIDemo]: main/java/org/example/WeatherAPIDemo.java
