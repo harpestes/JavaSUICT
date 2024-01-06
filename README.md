@@ -24,10 +24,10 @@
 
 **Під час лабораторної роботи я навчився оброблювати винятки у Java**
 
-[BankAccount]: BankAccount.java
-[Bank]: Bank.java
-[AccountNotFoundException]: exceptions/AccountNotFoundException.java
-[InsufficientFundsException]: exceptions/InsufficientFundsException.java
-[NegativeAmountException]: exceptions/NegativeAmountException.java
-[BankTest]: ../../../../test/java/org/example/BankTest.java
-[BankAccountTest]: ../../../../test/java/org/example/BankAccountTest.java
+[BankAccount]: src/main/java/org/example/BankAccount.java
+[Bank]: src/main/java/org/example/Bank.java
+[AccountNotFoundException]: src/main/java/org/example/exceptions/AccountNotFoundException.java
+[InsufficientFundsException]: src/main/java/org/example/exceptions/InsufficientFundsException.java
+[NegativeAmountException]: src/main/java/org/example/exceptions/NegativeAmountException.java
+[BankTest]: src/test/java/org/example/BankTest.java
+[BankAccountTest]: src/test/java/org/example/BankAccountTest.java
