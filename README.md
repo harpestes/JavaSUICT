@@ -25,11 +25,11 @@
 
 **Під час лабораторної роботи я навчився робити http запити, обробляти json відповідь та зберігати дані в Excel таблиці**
 
-[Category]: model/Category.java
-[Product]: model/Product.java
-[User]: model/User.java
-[Client]: controller/Client.java
-[ProductDTO]: dto/ProductDTO.java
-[ProductMapper]: mapper/ProductMapper.java
-[TableConstructor]: utils/TableConstructor.java
-[APIDemo]: APIDemo.java
+[Category]: src/main/java/org/example/model/Category.java
+[Product]: src/main/java/org/example/model/Product.java
+[User]: src/main/java/org/example/model/User.java
+[Client]: src/main/java/org/example/controller/Client.java
+[ProductDTO]: src/main/java/org/example/dto/ProductDTO.java
+[ProductMapper]: src/main/java/org/example/mapper/ProductMapper.java
+[TableConstructor]: src/main/java/org/example/utils/TableConstructor.java
+[APIDemo]: src/main/java/org/example/APIDemo.java
