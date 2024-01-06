@@ -17,5 +17,5 @@
 
 **Під час виконання лабораторної роботи покращив вміння користуватися рядками Java, зокрема такими інструментами як `StringBuilder`**
 
-[тести]: ../test/java/PalindromeTest.java
-[клас]: ./java/org/example/Palindrome.java
+[тести]: src/test/java/PalindromeTest.java
+[клас]: src/main/java/org/example/Palindrome.java
