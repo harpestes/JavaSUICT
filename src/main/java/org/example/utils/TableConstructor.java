@@ -1,15 +1,15 @@
-package org.example.lab9.utils;
+package org.example.utils;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.example.lab9.dto.ProductDTO;
-import org.example.lab9.mapper.ProductMapper;
-import org.example.lab9.model.Category;
-import org.example.lab9.model.Product;
-import org.example.lab9.model.User;
+import org.example.dto.ProductDTO;
+import org.example.mapper.ProductMapper;
+import org.example.model.Category;
+import org.example.model.Product;
+import org.example.model.User;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

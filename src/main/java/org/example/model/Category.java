@@ -1,4 +1,4 @@
-package org.example.lab9.model;
+package org.example.model;
 
 import lombok.Getter;
 

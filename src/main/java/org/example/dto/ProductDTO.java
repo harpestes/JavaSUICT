@@ -1,4 +1,4 @@
-package org.example.lab9.dto;
+package org.example.dto;
 
 import lombok.Builder;
 

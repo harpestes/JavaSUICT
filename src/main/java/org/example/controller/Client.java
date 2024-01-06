@@ -1,12 +1,12 @@
-package org.example.lab9.controller;
+package org.example.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Setter;
-import org.example.lab9.model.Product;
-import org.example.lab9.model.User;
-import org.example.lab9.model.Category;
+import org.example.model.Product;
+import org.example.model.User;
+import org.example.model.Category;
 
 import java.io.IOException;
 import java.net.URI;

@@ -1,10 +1,10 @@
-package org.example.lab9;
+package org.example;
 
-import org.example.lab9.controller.Client;
-import org.example.lab9.model.Category;
-import org.example.lab9.model.Product;
-import org.example.lab9.model.User;
-import org.example.lab9.utils.TableConstructor;
+import org.example.controller.Client;
+import org.example.model.Category;
+import org.example.model.Product;
+import org.example.model.User;
+import org.example.utils.TableConstructor;
 
 import java.util.List;
 

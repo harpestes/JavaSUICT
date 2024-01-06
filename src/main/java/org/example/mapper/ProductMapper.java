@@ -1,7 +1,7 @@
-package org.example.lab9.mapper;
+package org.example.mapper;
 
-import org.example.lab9.dto.ProductDTO;
-import org.example.lab9.model.Product;
+import org.example.dto.ProductDTO;
+import org.example.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
