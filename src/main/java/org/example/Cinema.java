@@ -67,29 +67,27 @@ public class Cinema {
     }
 
     public void printSeatingArrangement(int hallNumber) {
-        System.out.print("\t\t");
-        for(int i = 0; i < cinema[hallNumber][0].length; i++) {
-            System.out.print(i+1 + "\t");
-        }
-        System.out.println();
-        for (int row = 1; row <= cinema[hallNumber].length; row++) {
-            if(row >= 10) {
-                System.out.print("   ");
+        StringBuilder header = new StringBuilder("\t");
+        for(int seat = 0; seat < cinema[hallNumber][0].length; seat++) {
+            if((seat + 1) / 10 == 0) {
+                header.append(String.format("\t%d", seat + 1));
             }
             else {
-                System.out.print("\t");
+                header.append(String.format("  %d", seat + 1));
             }
-            System.out.print(row + " |");
-            for(int seat: cinema[hallNumber][row-1]) {
-                System.out.print("\t" + seat);
+        }
+        header.append("\t\t\n");
+
+        StringBuilder output = new StringBuilder(header);
+        for(int row = 0; row < cinema[hallNumber].length; row++) {
+            output.append((row + 1 >= 10) ? " " : "  ").append(String.format("%d |%s", row + 1, "\u001B[40m\u001B[32m"));
+            for(int seat : cinema[hallNumber][row]) {
+                output.append(seat == 0 ? String.format("\t%s0", "\u001B[40m\u001B[32m") : String.format("%s\t1", "\u001B[43m\u001B[31m"));
             }
-            System.out.println(" | " + row);
+            output.append(String.format("\t%s| %d  \n", "\u001B[0m", row + 1));
         }
-        System.out.print("\t\t");
-        for(int i = 0; i < cinema[hallNumber][0].length; i++) {
-            System.out.print(i+1 + "\t");
-        }
-        System.out.println();
+        output.append(header);
+        System.out.print(output);
     }
 
     public Seats findBestAvailable(int hallNumber, int numSeats) {
